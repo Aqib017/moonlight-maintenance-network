@@ -45,7 +45,7 @@ function Login() {
         <div className="container">
 
            <h1>
-                Moonlight Login (Feature Branch)
+                Moonlight Login 
             </h1>
 
             <input
