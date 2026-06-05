@@ -29,4 +29,11 @@ public class UserService {
 										.map(user ->new UserResponse(user.getId(), user.getUsername()))
 										.collect(Collectors.toList());
 	}
+	public void deleteUser(Long id) {
+		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		if ("admin".equalsIgnoreCase(user.getUsername())) {
+			throw new RuntimeException("Admin user cannot be deleted");
+		}
+		userRepository.delete(user);
+	}
 }
