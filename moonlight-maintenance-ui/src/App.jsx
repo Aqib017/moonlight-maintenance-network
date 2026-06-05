@@ -4,6 +4,7 @@ import MonthlyStatement from "./pages/MonthlyStatement";
 import ResidentLookup from "./components/ResidentLookup";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UserManagement from "./pages/UserManagement";
 
 function App() {
 
@@ -29,6 +30,10 @@ function App() {
 
             <Link to="/statement">
                 Monthly Statement
+            </Link>
+
+            <Link to="/users">
+                User Management
             </Link>
 
         </div>
@@ -67,6 +72,15 @@ function App() {
                 <Route
                     path="/login"
                     element={<Login />}
+                />
+
+                <Route
+                    path="/users"
+                    element={
+                        <ProtectedRoute>
+                            <UserManagement />
+                        </ProtectedRoute>
+                    }
                 />
 
             </Routes>
