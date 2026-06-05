@@ -5,6 +5,7 @@ import ResidentLookup from "./components/ResidentLookup";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserManagement from "./pages/UserManagement";
+import Collections from "./pages/Collections";
 
 function App() {
 
@@ -34,6 +35,10 @@ function App() {
 
             <Link to="/users">
                 User Management
+            </Link>
+
+            <Link to="/collections">
+            Collections
             </Link>
 
         </div>
@@ -81,6 +86,11 @@ function App() {
                             <UserManagement />
                         </ProtectedRoute>
                     }
+                />
+
+                <Route
+                path="/collections"
+                element={<Collections />}
                 />
 
             </Routes>
