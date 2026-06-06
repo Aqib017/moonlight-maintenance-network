@@ -54,4 +54,7 @@ public class CollectionService {
 		}
 		return report;
 	}
+	public void deleteCollection(Long id) {
+	    collectionRepository.deleteById(id);
+	}
 }

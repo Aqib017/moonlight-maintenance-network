@@ -3,5 +3,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.moonlight.mnt.entity.MonthlySummary;
 
 public interface MonthlySummaryRepository extends JpaRepository<MonthlySummary, Long> {
+	
+	MonthlySummary findByMonthAndYear(String month, Integer year);
 
 }

@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserManagement from "./pages/UserManagement";
 import Collections from "./pages/Collections";
+import DueReport from "./pages/DueReport";
+import ResidentLedger from "./pages/ResidentLedger";
 
 function App() {
 
@@ -39,6 +41,14 @@ function App() {
 
             <Link to="/collections">
             Collections
+            </Link>
+
+            <Link to="/due-report">
+            Due Report
+            </Link>
+
+            <Link to="/resident-ledger">
+            Resident Ledger
             </Link>
 
         </div>
@@ -91,6 +101,16 @@ function App() {
                 <Route
                 path="/collections"
                 element={<Collections />}
+                />
+
+                <Route
+                path="/due-report"
+                element={<DueReport />}
+                />
+
+                <Route
+                path="/resident-ledger"
+                element={<ResidentLedger />}
                 />
 
             </Routes>
