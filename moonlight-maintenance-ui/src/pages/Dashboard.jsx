@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import FinanceChart from "../components/FinanceChart";
+import buildingImage from "../assets/moonlight-building.jpg";
 
 function App() {
 
@@ -36,6 +37,12 @@ function App() {
   return (
 
 <div className="hero-banner">
+
+    <img
+        src={buildingImage}
+        alt="Moonlight Apartment"
+        className="building-banner"
+        />
 
     <h1>
         Moonlight Apartment
