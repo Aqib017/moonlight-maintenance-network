@@ -94,11 +94,28 @@ function App() {
     <h2>
         Financial Overview
     </h2>
+    
 
     <FinanceChart
         collection={dashboard.totalCollection}
         expense={dashboard.totalExpense}
     />
+
+</div>
+<div className="card">
+
+  <h2>
+    Recent Activity
+  </h2>
+
+  {dashboard.recentActivities?.map(
+    (a, index) => (
+
+      <p key={index}>
+        • {a.activity}
+      </p>
+
+  ))}
 
 </div>
 

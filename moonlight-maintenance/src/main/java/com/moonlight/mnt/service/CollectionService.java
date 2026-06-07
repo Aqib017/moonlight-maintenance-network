@@ -23,6 +23,7 @@ public class CollectionService {
 			throw new RuntimeException("Payment already exists for " + collection.getFlatNumber() + " "
 					+ collection.getMonth() + " " + collection.getYear());
 		}
+		collection.setMonth(collection.getMonth().toUpperCase());
 		return collectionRepository.save(collection);
 	}
     public List<Collection> getAllCollections() {
@@ -61,7 +62,7 @@ public class CollectionService {
 		Collection existingCollection = collectionRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Collection not found"));
 		existingCollection.setFlatNumber(updatedCollection.getFlatNumber());
-		existingCollection.setMonth(updatedCollection.getMonth());
+		existingCollection.setMonth(updatedCollection.getMonth().toUpperCase());
 		existingCollection.setYear(updatedCollection.getYear());
 		existingCollection.setAmount(updatedCollection.getAmount());
 		existingCollection.setPaymentDate(updatedCollection.getPaymentDate());
@@ -69,6 +70,9 @@ public class CollectionService {
 		return collectionRepository.save(existingCollection);
 	}
 	public Long getTotalCollectionsRecorded() {
-	    return collectionRepository.count();
+		return collectionRepository.count();
+	}
+	public Double getTotalCollectionAmountByMonthAndYear(String month, Integer year) {
+		return collectionRepository.getTotalCollectionAmountByMonthAndYear(month, year);
 	}
 }

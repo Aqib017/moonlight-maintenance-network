@@ -1,4 +1,6 @@
 package com.moonlight.mnt.dto;
+import java.util.List;
+import com.moonlight.mnt.dto.RecentActivityDto;
 
 public class DashboardSummaryResponse {
 	
@@ -10,7 +12,15 @@ public class DashboardSummaryResponse {
     private Double totalExpense;
     private Double balance;
     private Long totalCollectionsRecorded;
-
+    private List<RecentActivityDto> recentActivities;
+    
+    public List<RecentActivityDto> getRecentActivities() {
+        return recentActivities;
+    }
+    public void setRecentActivities(
+            List<RecentActivityDto> recentActivities) {
+        this.recentActivities = recentActivities;
+    }
     public Long getTotalCollectionsRecorded() {
         return totalCollectionsRecorded;
     }
