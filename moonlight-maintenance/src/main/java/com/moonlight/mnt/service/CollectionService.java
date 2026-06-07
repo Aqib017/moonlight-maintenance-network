@@ -57,4 +57,18 @@ public class CollectionService {
 	public void deleteCollection(Long id) {
 	    collectionRepository.deleteById(id);
 	}
+	public Collection updateCollection(Long id, Collection updatedCollection) {
+		Collection existingCollection = collectionRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Collection not found"));
+		existingCollection.setFlatNumber(updatedCollection.getFlatNumber());
+		existingCollection.setMonth(updatedCollection.getMonth());
+		existingCollection.setYear(updatedCollection.getYear());
+		existingCollection.setAmount(updatedCollection.getAmount());
+		existingCollection.setPaymentDate(updatedCollection.getPaymentDate());
+		existingCollection.setRemarks(updatedCollection.getRemarks());
+		return collectionRepository.save(existingCollection);
+	}
+	public Long getTotalCollectionsRecorded() {
+	    return collectionRepository.count();
+	}
 }

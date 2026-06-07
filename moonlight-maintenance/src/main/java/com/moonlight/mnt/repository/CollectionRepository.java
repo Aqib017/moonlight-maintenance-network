@@ -14,5 +14,7 @@ public interface CollectionRepository extends JpaRepository<Collection, Long> {
 	List<Collection> findByMonthAndYear(String month, Integer year);
 
 	boolean existsByFlatNumberAndMonthAndYear(String flatNumber, String month, Integer year);
+	
+	long count();
 
 }

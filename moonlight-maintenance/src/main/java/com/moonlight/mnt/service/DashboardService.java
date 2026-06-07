@@ -17,6 +17,9 @@ public class DashboardService {
     
     @Autowired
     private MonthlySummaryService monthlySummaryService;
+    
+    @Autowired
+    private CollectionService collectionService;
 
     public DashboardSummaryResponse getDashboardSummary(String month,Integer year) {
 
@@ -29,7 +32,9 @@ public class DashboardService {
 		response.setTotalCollection(summary.getCollection());
 		response.setTotalExpense(summary.getExpense());
 		response.setBalance(summary.getClosingBalance());
+		response.setTotalCollectionsRecorded(collectionService.getTotalCollectionsRecorded());
         return response;
     }
+    
 
 }

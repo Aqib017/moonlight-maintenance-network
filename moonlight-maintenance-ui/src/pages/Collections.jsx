@@ -6,6 +6,8 @@ function Collections() {
   const [collections, setCollections] = useState([]);
   const [flats, setFlats] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [editingId, setEditingId] = useState(null);
+
       const [form, setForm] = useState({
         flatNumber: "",
         month: "",
@@ -80,21 +82,53 @@ function Collections() {
           loadCollections();
         };
 
+    const editCollection = (collection) => {
+
+      setEditingId(collection.id);
+
+      setForm({
+        flatNumber: collection.flatNumber,
+        month: collection.month,
+        year: collection.year,
+        amount: collection.amount,
+        paymentDate: collection.paymentDate,
+        remarks: collection.remarks
+      });
+    };
+
+
   const saveCollection = async () => {
 
   const token = localStorage.getItem("token");
 
           try {
 
-            await axios.post(
-              "http://localhost:8080/api/collections",
-              form,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`
+            if (editingId) {
+
+              await axios.put(
+                `http://localhost:8080/api/collections/${editingId}`,
+                form,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`
+                  }
                 }
-              }
-            );
+              );
+
+            } else {
+
+              await axios.post(
+                "http://localhost:8080/api/collections",
+                form,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`
+                  }
+                }
+              );
+            }
+
+            setEditingId(null);
 
             setErrorMessage("");
 
@@ -114,25 +148,7 @@ function Collections() {
             setErrorMessage(
               "Payment already exists for this Flat, Month and Year"
             );
-
-          }
-          {
-          errorMessage &&
-          <p style={{color: "red"}}>
-            {errorMessage}
-          </p>
-        }
-
-            setForm({
-                flatNumber: "",
-                month: "",
-                year: new Date().getFullYear(),
-                amount: "",
-                paymentDate: "",
-                remarks: ""
-            });
-
-            loadCollections();
+    }  
             };
 
   return (
@@ -241,11 +257,19 @@ function Collections() {
                 }
             />
 
-            <button onClick={saveCollection}>
-                Save Payment
-            </button>
+    <button onClick={saveCollection}>
+      {editingId
+        ? "Update Payment"
+        : "Save Payment"}
+    </button>
 
             </div>
+
+          {errorMessage && (
+        <p style={{ color: "red" }}>
+          {errorMessage}
+        </p>
+      )}
 
             <hr />
 
@@ -256,7 +280,7 @@ function Collections() {
             <th>Month</th>
             <th>Year</th>
             <th>Amount</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -269,12 +293,20 @@ function Collections() {
               <td>{c.amount}</td>
               <td>
               <button
-                onClick={() =>
-                  deleteCollection(c.id)
-                }
-              >
-                Delete
-              </button>
+              onClick={() =>
+                editCollection(c)
+              }
+            >
+              Edit
+            </button>
+
+            <button
+              onClick={() =>
+                deleteCollection(c.id)
+              }
+            >
+              Delete
+            </button>
             </td>
             </tr>
           ))}

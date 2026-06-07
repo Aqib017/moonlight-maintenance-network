@@ -8,6 +8,7 @@ import UserManagement from "./pages/UserManagement";
 import Collections from "./pages/Collections";
 import DueReport from "./pages/DueReport";
 import ResidentLedger from "./pages/ResidentLedger";
+import Expenses from "./pages/Expenses";
 
 function App() {
 
@@ -49,6 +50,10 @@ function App() {
 
             <Link to="/resident-ledger">
             Resident Ledger
+            </Link>
+
+            <Link to="/expenses">
+            Expenses
             </Link>
 
         </div>
@@ -111,6 +116,11 @@ function App() {
                 <Route
                 path="/resident-ledger"
                 element={<ResidentLedger />}
+                />
+
+                <Route
+                path="/expenses"
+                element={<Expenses />}
                 />
 
             </Routes>

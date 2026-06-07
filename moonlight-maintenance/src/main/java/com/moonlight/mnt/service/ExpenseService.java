@@ -35,4 +35,7 @@ public class ExpenseService {
 	public List<Expense> getExpensesByMonthAndYear(String month, Integer year) {
 		return expenseRepository.findByMonthAndYear(month, year);
 	}
+	public void deleteExpense(Long id) {
+	    expenseRepository.deleteById(id);
+	}
 }

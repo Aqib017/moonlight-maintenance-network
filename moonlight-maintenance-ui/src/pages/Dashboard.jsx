@@ -54,6 +54,11 @@ function App() {
 
     <div className="dashboard-grid">
 
+        <div className="dashboard-card">
+            <h3>Payments Recorded</h3>
+            <p>{dashboard.totalCollectionsRecorded}</p>
+        </div>
+
         <div className="dashboard-card flats">
             <h3>Total Flats</h3>
             <p>{dashboard.totalFlats}</p>

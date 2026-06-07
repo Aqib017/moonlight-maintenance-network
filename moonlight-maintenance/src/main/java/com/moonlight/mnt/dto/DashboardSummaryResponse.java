@@ -9,7 +9,14 @@ public class DashboardSummaryResponse {
     private Double totalCollection;
     private Double totalExpense;
     private Double balance;
+    private Long totalCollectionsRecorded;
 
+    public Long getTotalCollectionsRecorded() {
+        return totalCollectionsRecorded;
+    }
+	public void setTotalCollectionsRecorded(Long totalCollectionsRecorded) {
+		this.totalCollectionsRecorded = totalCollectionsRecorded;
+	}
     public DashboardSummaryResponse() {
     }
     public String getMonth() {
