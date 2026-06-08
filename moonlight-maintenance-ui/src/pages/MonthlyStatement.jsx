@@ -25,6 +25,48 @@ function MonthlyStatement() {
         }
     };
 
+    const downloadPdf = async () => {
+
+    try {
+
+        const response = await api.get(
+            `/statement/pdf/${month}/${year}`,
+            {
+                responseType: "blob"
+            }
+        );
+
+        const url =
+            window.URL.createObjectURL(
+                new Blob([response.data])
+            );
+
+        const link =
+            document.createElement("a");
+
+        link.href = url;
+
+        link.setAttribute(
+            "download",
+            `Statement-${month}-${year}.pdf`
+        );
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "PDF download failed"
+        );
+    }
+};
+
     return (
 
         <div className="container">
@@ -59,6 +101,12 @@ function MonthlyStatement() {
                 onClick={fetchStatement}
             >
                 Generate
+            </button>
+
+            <button
+                onClick={downloadPdf}
+            >
+                Download PDF
             </button>
 
             {statement && (
