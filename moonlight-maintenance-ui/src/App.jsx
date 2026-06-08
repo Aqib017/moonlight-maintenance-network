@@ -9,6 +9,7 @@ import Collections from "./pages/Collections";
 import DueReport from "./pages/DueReport";
 import ResidentLedger from "./pages/ResidentLedger";
 import Expenses from "./pages/Expenses";
+import ExportData from "./pages/ExportData";
 
 function App() {
 
@@ -55,6 +56,10 @@ function App() {
             <Link to="/expenses">
             Expenses
             </Link>
+
+              <Link to="/export">
+                    Export
+                </Link>
 
         </div>
 
@@ -121,6 +126,15 @@ function App() {
                 <Route
                 path="/expenses"
                 element={<Expenses />}
+                />
+
+                <Route
+                path="/export"
+                element={
+                    <ProtectedRoute>
+                        <ExportData />
+                    </ProtectedRoute>
+                }
                 />
 
             </Routes>

@@ -12,20 +12,21 @@ public class ExportController {
     @Autowired
     private ExcelExportService excelExportService;
 
-    @GetMapping("/export/collections")
-    public ResponseEntity<byte[]> exportCollections()
-            throws Exception {
+	@GetMapping("/export/collections")
+	public ResponseEntity<byte[]> exportCollections() throws Exception {
 
-        byte[] excel =
-                excelExportService
-                .exportCollections();
+		byte[] excel = excelExportService.exportCollections();
 
-        return ResponseEntity.ok()
-                .header(
-                    HttpHeaders.CONTENT_DISPOSITION,
-                    "attachment; filename=Collections.xlsx")
-                .contentType(
-                    MediaType.APPLICATION_OCTET_STREAM)
-                .body(excel);
-    }
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Collections.xlsx")
+				.contentType(MediaType.APPLICATION_OCTET_STREAM).body(excel);
+	}
+    
+	@GetMapping("/export/expenses")
+	public ResponseEntity<byte[]> exportExpenses() throws Exception {
+
+		byte[] excel = excelExportService.exportExpenses();
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Expenses.xlsx")
+				.contentType(MediaType.APPLICATION_OCTET_STREAM).body(excel);
+	}
 }
