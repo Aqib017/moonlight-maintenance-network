@@ -2,12 +2,26 @@ version: '3.8'
 
 services:
 
+  mysql:
+    image: mysql:8.0
+    container_name: moonlight-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mySQL#0017
+      MYSQL_DATABASE: moonlight_mnt_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - moonlight-mysql-data:/var/lib/mysql
+
   backend:
-    image: aqib1227/moonlight-backend:1.1
+    image: aqib1227/moonlight-backend:1.2
     container_name: moonlight-backend
     ports:
       - "8081:8080"
     restart: always
+    depends_on:
+      - mysql
 
   frontend:
     image: aqib1227/moonlight-frontend:1.0
@@ -17,3 +31,6 @@ services:
     restart: always
     depends_on:
       - backend
+
+volumes:
+  moonlight-mysql-data:
