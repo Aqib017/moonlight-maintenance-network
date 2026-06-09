@@ -4,6 +4,7 @@ target/
 *.class
 *.jar
 *.war
+*.sql
 
 # Eclipse
 
