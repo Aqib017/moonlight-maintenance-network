@@ -1,4 +1,5 @@
 package com.moonlight.mnt.repository;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,6 @@ public interface FlatRepository extends JpaRepository<Flat, Long> {
 	boolean existsByFlatNumber(String flatNumber);
 	
 	Optional<Flat> findByFlatNumber(String flatNumber);
+	List<Flat> findByActiveTrue();
 
 }

@@ -5,6 +5,11 @@ import ResidentLookup from "./components/ResidentLookup";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserManagement from "./pages/UserManagement";
+import Collections from "./pages/Collections";
+import DueReport from "./pages/DueReport";
+import ResidentLedger from "./pages/ResidentLedger";
+import Expenses from "./pages/Expenses";
+import ExportData from "./pages/ExportData";
 
 function App() {
 
@@ -35,6 +40,26 @@ function App() {
             <Link to="/users">
                 User Management
             </Link>
+
+            <Link to="/collections">
+            Collections
+            </Link>
+
+            <Link to="/due-report">
+            Due Report
+            </Link>
+
+            <Link to="/resident-ledger">
+            Resident Ledger
+            </Link>
+
+            <Link to="/expenses">
+            Expenses
+            </Link>
+
+              <Link to="/export">
+                    Export
+                </Link>
 
         </div>
 
@@ -81,6 +106,35 @@ function App() {
                             <UserManagement />
                         </ProtectedRoute>
                     }
+                />
+
+                <Route
+                path="/collections"
+                element={<Collections />}
+                />
+
+                <Route
+                path="/due-report"
+                element={<DueReport />}
+                />
+
+                <Route
+                path="/resident-ledger"
+                element={<ResidentLedger />}
+                />
+
+                <Route
+                path="/expenses"
+                element={<Expenses />}
+                />
+
+                <Route
+                path="/export"
+                element={
+                    <ProtectedRoute>
+                        <ExportData />
+                    </ProtectedRoute>
+                }
                 />
 
             </Routes>

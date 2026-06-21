@@ -12,6 +12,7 @@ public class ExpenseService {
 	private ExpenseRepository expenseRepository;
 	
 	public Expense addExpense(Expense expense) {
+		expense.setMonth(expense.getMonth().toUpperCase());
 		return expenseRepository.save(expense);
 	}
 	public List<Expense>getAllExpenses() {
@@ -28,11 +29,14 @@ public class ExpenseService {
 	    existingExpense.setAmount(updatedExpense.getAmount());
 	    existingExpense.setExpenseDate(updatedExpense.getExpenseDate());
 	    existingExpense.setRemarks(updatedExpense.getRemarks());
-	    existingExpense.setMonth(updatedExpense.getMonth());
+	    existingExpense.setMonth(updatedExpense.getMonth().toUpperCase());
 	    existingExpense.setYear(updatedExpense.getYear());
 	    return expenseRepository.save(existingExpense);
 	}
 	public List<Expense> getExpensesByMonthAndYear(String month, Integer year) {
 		return expenseRepository.findByMonthAndYear(month, year);
+	}
+	public void deleteExpense(Long id) {
+	    expenseRepository.deleteById(id);
 	}
 }

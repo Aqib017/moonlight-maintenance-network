@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.moonlight.mnt.entity.Flat;
 import com.moonlight.mnt.service.FlatService;
-
 @RestController
 @RequestMapping("/flats")
 public class FlatController {

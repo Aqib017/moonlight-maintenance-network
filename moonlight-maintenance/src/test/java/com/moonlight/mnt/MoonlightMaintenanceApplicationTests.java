@@ -1,4 +1,4 @@
-package com.moonlight_maintenance;
+package com.moonlight.mnt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

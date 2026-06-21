@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import FinanceChart from "../components/FinanceChart";
+import buildingImage from "../assets/moonlight-building.jpg";
 
 function App() {
 
@@ -37,6 +38,12 @@ function App() {
 
 <div className="hero-banner">
 
+    <img
+        src={buildingImage}
+        alt="Moonlight Apartment"
+        className="building-banner"
+        />
+
     <h1>
         Moonlight Apartment
     </h1>
@@ -53,6 +60,11 @@ function App() {
     
 
     <div className="dashboard-grid">
+
+        <div className="dashboard-card">
+            <h3>Payments Recorded</h3>
+            <p>{dashboard.totalCollectionsRecorded}</p>
+        </div>
 
         <div className="dashboard-card flats">
             <h3>Total Flats</h3>
@@ -89,11 +101,28 @@ function App() {
     <h2>
         Financial Overview
     </h2>
+    
 
     <FinanceChart
         collection={dashboard.totalCollection}
         expense={dashboard.totalExpense}
     />
+
+</div>
+<div className="card">
+
+  <h2>
+    Recent Activity
+  </h2>
+
+  {dashboard.recentActivities?.map(
+    (a, index) => (
+
+      <p key={index}>
+        • {a.activity}
+      </p>
+
+  ))}
 
 </div>
 

@@ -16,4 +16,7 @@ public class MonthlySummaryService {
     public MonthlySummary save(MonthlySummary summary) {
         return repository.save(summary);
     }
+	public MonthlySummary getByMonthAndYear(String month, Integer year) {
+		return repository.findByMonthAndYear(month.toUpperCase(), year);
+	}
 }
